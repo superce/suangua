@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" href="css/index.css">
+	<script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+	<script src='js/index.js'></script>
+	<title>周易文化</title>
+</head>
+<body>
+	<div class="wrap">
+		<div class="header">
+			<div class="top">
+				<div class="logo">
+					<img src="images/logo.png" alt="">
+				</div>
+			</div>
+			<!-- 轮播广告 -->
+		    <div id="banner_tabs" class="flexslider">
+		        <ul class="slides">
+		            <li>
+		                <a title="" target="_blank" href="#">
+		                    <img width="1920" height="482" alt="" style="background: url(images/banner1.jpg) no-repeat center;" src="images/alpha.png">
+		                </a>
+		            </li>
+		            <li>
+		                <a title="" href="#">
+		                    <img width="1920" height="482" alt="" style="background: url(images/banner2.jpg) no-repeat center;" src="images/alpha.png">
+		                </a>
+		            </li>
+		            <li>
+		                <a title="" href="#">
+		                    <img width="1920" height="482" alt="" style="background: url(images/banner3.jpg) no-repeat center;" src="images/alpha.png">
+		                </a>
+		            </li>
+		        </ul>
+		        <ul class="flex-direction-nav">
+		            <li><a class="flex-prev" href="javascript:;">Previous</a></li>
+		            <li><a class="flex-next" href="javascript:;">Next</a></li>
+		        </ul>
+		        <ol id="bannerCtrl" class="flex-control-nav flex-control-paging">
+		            <li><a>1</a></li>
+		            <li><a>2</a></li>
+		            <li><a>2</a></li>
+		        </ol>
+		    </div>
+		    <script type="text/javascript">
+			    $(function() {
+			        var bannerSlider = new Slider($('#banner_tabs'), {
+			            time: 5000,
+			            delay: 400,
+			            event: 'hover',
+			            auto: true,
+			            mode: 'fade',
+			            controller: $('#bannerCtrl'),
+			            activeControllerCls: 'active'
+			        });
+			        $('#banner_tabs .flex-prev').click(function() {
+			            bannerSlider.prev()
+			        });
+			        $('#banner_tabs .flex-next').click(function() {
+			            bannerSlider.next()
+			        });
+			    })
+    </script>
+		</div>
+		<div class="main">
+			<div class="title title1">
+				<div class="h1">
+					<h1>研究会所介绍</h1>
+				</div>
+				<div class="content">
+				  <div class="pic">
+				    <img src="images/1.jpg" alt="">
+				  </div>
+				  <div class="column column1">
+					<p class="p1">会长简介</p>
+					<p> <span>李果财</span>，男，字垚均，1953年生人，大学本科学历，中共党员，河北省秦皇岛市人。曾在党政机关和企业单位担任重要领导干部职务。现任秦皇岛市传统文化研究会会长、全国工商联国学文化产业培训中心编审专家委员会副主任委员、中华易学专家委员会权威专家（专家编号：ZHYL09509）、北京建筑工程学院设计研究院建筑文化研究所特邀研究员、中国易学堪舆泰斗等。同时，被国内数十家大中型企业聘为企业风水顾问，并成为一些政商界成功人士的私人顾问。
+					李果财会长出生于易学世家，是李氏家族命理与风水第九代嫡系传人，自幼跟随祖父研习《易经》，在掌握命理、风水及祖传秘籍的基础上，继续多年潜心研究，利用命理通过风水调整，达到与当事人信息同步，趋吉避凶，效果显著。主要精通风水、道法、命理、易理、相术、起名、择吉等。主要作品有：《命理学》、《四柱命理点评》、《预测应期绝招》、《择日学》、《九宫小奇门应用》、《阴宅风水》、《阳宅风水》等著作。</p>
+				  </div>
+				</div>
+			</div>
+			<div class="title title2">
+				<div class="h1">
+					<h1>副会长</h1>
+				</div>
+				<div class="content">
+				  <div class="column column2">
+					<p> <span>姚德昌</span> ，现年44岁，河北省青龙满族自治县人，讲师、律师、政工师，双大学学历，先后当过教师，县政府秘书、科长，局工会主席、副局长等职，发表过几十篇政治、经济、法律、教育、生活等方面论文，出版发行了法律、周易方面论著两本；近期还要出版《奚国风云》一书。1992年开始学习易学，1994年成为本地研究会会长，先后跟许多名师函授、面授学习，已发表易学论文六篇，主持研讨会多次，2007年又为中华周易协会常务理事，学术委员会委员；曾获得国际周易应用研究院六爻、四柱预测师，吕氏风水学传人，中华周易协会高级预测、风水、命名师职称。近十年，由于对中国传统文化研究及应用成果显著，曾被国内多家报刊、杂志竞相报道，2007年入编《中华周易名人录》。</p>
+				  </div>
+				</div>
+			</div>
+			<!-- 专家成员 -->
+			<div class="tab">
+			  	<div class="title3">
+					<div class="h1">
+						<h1>专家成员</h1>
+					</div>
+				</div>
+				<!-- 第一行 -->
+				<div class="content1">
+				  <div class="partner1">
+				  	<div class="left">
+				  		<img src="images/1.jpg" alt="">
+				  		<h2>
+				  		  <a href="" target="_blank">
+				  		  	权威专家李果财
+				  		  </a>
+				  		</h2>
+				  		<p>中华易学专家委员会权威专家，中国易学堪舆泰斗等称号。</p>
+				  	</div>
+				  	<div class="right">
+				  		<img src="images/5.jpg" alt="">
+				  		<h2>
+				  		  <a href="" target="_blank">
+				  		  	现代易学专家姚德昌
+				  		  </a>
+				  		</h2>
+				  		<p>授予“现代著名易学专家”称号。</p>
+				  	</div>
+				  </div>				  
+				</div>
+				<!-- 第二行 -->
+				<div class="content1">
+				  <div class="partner1">
+				  	<div class="left">
+				  		<img src="images/4.jpg" alt="">
+				  		<h2>
+				  		  <a href="" target="_blank">
+				  		  	专家樊昇林
+				  		  </a>
+				  		</h2>
+				  		<p>对命理、风水、六爻、姓名学、八卦象数疗法及民间一些趋吉避凶等颇有研究。</p>
+				  	</div>
+				  	<div class="right">
+				  		<img src="images/3.jpg" alt="">
+				  		<h2>
+				  		  <a href="" target="_blank">
+				  		  	专家谢连华
+				  		  </a>
+				  		</h2>
+				  		<p>被人们称为当代刘伯温。</p>
+				  	</div>
+				  </div>				  
+				</div>
+			</div>
+			<!-- 向上滚动 -->
+			<div class="scrolltop">
+				<div class="myscroll">
+					<ul>
+						<li><a href="" target="_blank">住宅风水神位安置</a></li>
+						<li><a href="" target="_blank">住宅内部布局对于阳宅风水的影响</a></li>
+						<li><a href="" target="_blank">八山总论</a></li>
+						<li><a href="" target="_blank">住宅建筑的风水规划</a></li>
+						<li><a href="" target="_blank">办公室风水座位的选择</a></li>
+						<li><a href="" target="_blank">住宅周边高低看吉凶</a></li>
+						<li><a href="" target="_blank">办公室风水</a></li>
+						<li><a href="" target="_blank">葬经</a></li>
+						<li><a href="" target="_blank">《金锁玉关》</a></li>
+						<li><a href="" target="_blank">科学风水学原则</a></li>
+						<li><a href="" target="_blank">传统风水核心理论</a></li>
+						<li><a href="" target="_blank">历代风水名家</a></li>
+						<li><a href="" target="_blank">风水起源、发展及流派</a></li>
+					</ul>
+				</div>
+			</div>
+			<script type="text/javascript">
+				$(function(){
+					$('.myscroll').myScroll({
+						speed: 40, //数值越大，速度越慢
+						rowHeight: 26 //li的高度
+					});
+				});
+			</script>
+		</div>
+		<div class="footer"></div>
+	</div>	
+</body>
+</html>
