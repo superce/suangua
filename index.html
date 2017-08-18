@@ -8,6 +8,7 @@
 	<link rel="stylesheet" href="css/index.css">
 	<script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
 	<script src='js/index.js'></script>
+	<script src='js/scroll.js'></script>
 	<title>周易文化</title>
 </head>
 <body>
@@ -18,54 +19,123 @@
 					<img src="images/logo.png" alt="">
 				</div>
 			</div>
+			<div class="nav-bar">
+				<ul>
+					<li><a href="#" target="_blank">首页</a></li>
+					<li><a href="http://hb.jjj.qq.com/qhd/qhdhome/index.htm" target="_blank">家居</a></li>
+					<li><a href="http://hb.jjj.qq.com/qhd/qhdedu/index.htm" target="_blank">教育</a></li>
+					<li><a href="http://hb.jjj.qq.com/qhd/qhdfood/index.htm" target="_blank">美食</a></li>
+					<li><a href="http://hb.jjj.qq.com/zt2017/cube/index.htm" target="_blank">豆腐</a></li>
+					<li><a href="http://hb.jjj.qq.com/qhd/qhdheath/index.htm" target="_blank">健康</a></li>
+					<li><a href="http://hb.jjj.qq.com/zt2017/entrepreneur/index.htm" target="_blank">创业</a></li>
+				</ul>
+			</div>
 			<!-- 轮播广告 -->
-		    <div id="banner_tabs" class="flexslider">
-		        <ul class="slides">
-		            <li>
-		                <a title="" target="_blank" href="#">
-		                    <img width="1920" height="482" alt="" style="background: url(images/banner1.jpg) no-repeat center;" src="images/alpha.png">
-		                </a>
-		            </li>
-		            <li>
-		                <a title="" href="#">
-		                    <img width="1920" height="482" alt="" style="background: url(images/banner2.jpg) no-repeat center;" src="images/alpha.png">
-		                </a>
-		            </li>
-		            <li>
-		                <a title="" href="#">
-		                    <img width="1920" height="482" alt="" style="background: url(images/banner3.jpg) no-repeat center;" src="images/alpha.png">
-		                </a>
-		            </li>
-		        </ul>
-		        <ul class="flex-direction-nav">
-		            <li><a class="flex-prev" href="javascript:;">Previous</a></li>
-		            <li><a class="flex-next" href="javascript:;">Next</a></li>
-		        </ul>
-		        <ol id="bannerCtrl" class="flex-control-nav flex-control-paging">
-		            <li><a>1</a></li>
-		            <li><a>2</a></li>
-		            <li><a>2</a></li>
-		        </ol>
-		    </div>
-		    <script type="text/javascript">
-			    $(function() {
-			        var bannerSlider = new Slider($('#banner_tabs'), {
-			            time: 5000,
-			            delay: 400,
-			            event: 'hover',
-			            auto: true,
-			            mode: 'fade',
-			            controller: $('#bannerCtrl'),
-			            activeControllerCls: 'active'
-			        });
-			        $('#banner_tabs .flex-prev').click(function() {
-			            bannerSlider.prev()
-			        });
-			        $('#banner_tabs .flex-next').click(function() {
-			            bannerSlider.next()
-			        });
-			    })
-    </script>
+			<div id="focus-banner">
+				<ul id="focus-banner-list">
+					<li> <a href="#" class="focus-banner-img"> <img src="images/l1.jpg" alt=""> </a>
+						<div class="focus-banner-text">
+						</div>
+					</li>
+					<li> <a href="#" class="focus-banner-img"> <img src="images/l2.jpg" alt=""> </a>
+						<div class="focus-banner-text">
+						</div>
+					</li>
+					<li> <a href="#" class="focus-banner-img"> <img src="images/l3.jpg" alt=""> </a>
+						<div class="focus-banner-text">
+						</div>
+					</li>
+					
+				</ul>
+					<a href="javascript:;" id="next-img" class="focus-handle"></a> <a href="javascript:;" id="prev-img" class="focus-handle"></a>
+					<ul id="focus-bubble">
+					</ul>
+			</div>
+			<script>
+			$(function(){
+				var focusBanner=function(){
+					var $focusBanner=$("#focus-banner"),
+						$bannerList=$("#focus-banner-list li"),
+						$focusHandle=$(".focus-handle"),
+						$bannerImg=$(".focus-banner-img"),
+						$nextBnt=$("#next-img"),
+						$prevBnt=$("#prev-img"),
+						$focusBubble=$("#focus-bubble"),
+						bannerLength=$bannerList.length,
+						_index=0,
+						_timer="";
+
+						var _height=$(".focus-banner-img").find("img").height();
+						$focusBanner.height(_height);
+						$bannerImg.height(_height);
+
+						for(var i=0; i<bannerLength; i++){
+							$bannerList.eq(i).css("zIndex",bannerLength-i);
+							$focusBubble.append('<li><a href="javascript:;">'+i+'</a></li>');
+						}
+						$focusBubble.find("li").eq(0).addClass("current");
+						var bubbleLength=$focusBubble.find("li").length;
+						$focusBubble.css({
+							"width":bubbleLength*22,
+							"marginLeft":-bubbleLength*11
+						});//初始化
+
+						$focusBubble.on("click","li",function(){
+							$(this).addClass("current").siblings().removeClass("current");
+							_index=$(this).index();
+							changeImg(_index);
+						});//点击轮换
+
+						$prevBnt.on("click",function(){
+							_index++
+							if(_index>bannerLength-1){
+								_index=0;
+							}
+							changeImg(_index);
+						});//下一张
+
+						$nextBnt.on("click",function(){
+							_index--
+							if(_index<0){
+								_index=bannerLength-1;
+							}
+							changeImg(_index);
+						});//上一张
+
+						function changeImg(_index){
+							$bannerList.eq(_index).fadeIn(250);
+							$bannerList.eq(_index).siblings().fadeOut(200);
+							$focusBubble.find("li").removeClass("current");
+							$focusBubble.find("li").eq(_index).addClass("current");
+							clearInterval(_timer);
+							_timer=setInterval(function(){$nextBnt.click()},5000)
+						}//切换主函数
+						_timer=setInterval(function(){$nextBnt.click()},5000);
+						function isIE() { //ie?
+							if (!!window.ActiveXObject || "ActiveXObject" in window)
+							return true;
+							else
+							return false;
+						}
+
+						if(!isIE()){
+							$(window).resize(function(){
+								window.location.reload();
+							});
+						}else{
+							if(!+'\v1' && !'1'[0]){
+								alert("老铁什么年代啦还在搞ie8以下版本啊！")
+							} else{
+								$(window).resize(function(){
+									window.location.reload();
+								});
+							};
+						}
+
+				}();
+			})
+		</script>
+			<!-- 轮播图结束 -->
 		</div>
 		<div class="main">
 			<div class="title title1">
@@ -100,6 +170,11 @@
 						<h1>专家成员</h1>
 					</div>
 				</div>
+				<div class="title4">
+					<div class="h1">
+						<h1>每日公告</h1>
+					</div>
+				</div>
 				<!-- 第一行 -->
 				<div class="content1">
 				  <div class="partner1">
@@ -121,7 +196,7 @@
 				  		</h2>
 				  		<p>授予“现代著名易学专家”称号。</p>
 				  	</div>
-				  </div>				  
+				  </div>
 				</div>
 				<!-- 第二行 -->
 				<div class="content1">
@@ -144,7 +219,7 @@
 				  		</h2>
 				  		<p>被人们称为当代刘伯温。</p>
 				  	</div>
-				  </div>				  
+				  </div>
 				</div>
 			</div>
 			<!-- 向上滚动 -->
@@ -169,14 +244,78 @@
 			</div>
 			<script type="text/javascript">
 				$(function(){
-					$('.myscroll').myScroll({
+					$('.scrolltop .myscroll').myScroll({
 						speed: 40, //数值越大，速度越慢
 						rowHeight: 26 //li的高度
 					});
 				});
 			</script>
+			<!-- 创业学员 -->
+
+			<!-- 饰品 -->
+			<div class="shipin">
+			    <div class="title">
+			    	<h1>祈福饰品</h1>
+			    </div>
+				<div class="pic">
+				  <div class="img">
+					<img src="images/c1.jpg" alt="">
+					<p>金蟾</p>
+				  </div>
+				  <div class="img">
+					<img src="images/c2.jpg" alt="">
+					<p>财神</p>
+				  </div>
+				  <div class="img">
+					<img src="images/c3.jpg" alt="">
+					<p>招财法宝大号铜葫芦</p>
+				  </div>
+					<div class="img">
+					<img src="images/c4.jpg" alt="">
+					<p>貔貅挂件</p>
+				  </div>
+					<div class="img">
+					<img src="images/c5.jpg" alt="">
+					<p>观音挂件</p>
+				  </div>
+					<div class="img">
+					<img src="images/c6.jpg" alt="">
+					<p>葫芦挂件</p>
+				  </div>
+				  <div class="img">
+					<img src="images/c7.jpg" alt="">
+					<p>马上赢</p>
+				  </div>
+				  <div class="img">
+					<img src="images/c8.jpg" alt="">
+					<p>招财金蟾</p>
+				  </div>
+				</div>
+			</div>
 		</div>
-		<div class="footer"></div>
-	</div>	
+		<div class="footer">
+			 <!--底部版权-->
+	      <div class="tcopyright">
+	        <div>
+	          <a href="http://www.tencent.com/" target="_blank" rel="nofollow">关于腾讯</a>|
+	          <a href="http://hb.jjj.qq.com/" target="_blank">关于腾讯京津冀</a>|
+	          <a href="http://www.qq.com/contract.shtml" target="_blank" rel="nofollow">服务协议</a>|
+	          <a href="http://www.qq.com/privacy.htm" target="_blank" rel="nofollow">隐私权保护</a>|
+	          <a href="http://open.qq.com/" target="_blank">开放平台</a>|
+	          <a href="http://hb.jjj.qq.com/qhd" target="_blank">广告服务</a>|
+	          <a href="http://hb.jjj.qq.com" target="_blank">大燕网招聘</a>|
+	          <a href="http://gongyi.qq.com/" target="_blank" rel="nofollow">腾讯公益</a>|
+	          <a href="http://service.qq.com/" target="_blank" rel="nofollow">客服中心</a>|
+	          <a href="http://www.qq.com/map/" target="_blank" rel="nofollow">网站导航</a>
+	        </div>
+	        <div class="en">Copyright &copy; 1998 - 2017 Tencent. All Rights Reserved</div>
+	        <div>
+	          <a href="http://www.tencent.com/" target="_blank">腾讯公司</a>
+	          <a href="http://www.tencent.com/zh-cn/le/copyrightstatement.shtml" target="_blank">版权所有</a>
+	        </div>
+	      </div>
+	      <!--底部版权结束-->
+		</div>
+	</div>
 </body>
 </html>
